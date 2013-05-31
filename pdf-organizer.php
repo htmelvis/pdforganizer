@@ -32,41 +32,19 @@ if(!class_exists('PDF_Organizer'))
 	class PDF_Organizer
 	{
 		/** Construct the Plugin Object **/
-		public function __contruct()
+		public function __construct()
 		{
 			//register actions
-			add_action('admin_init', array(&$this, 'admin_init'));
-			add_action('admin_menu', array(&$this, 'add_menu'));
+			require_once(sprintf("%s/settings.php", dirname(__FILE__)));
+			$Catalogs_Settings = new Catalogs_Settings(); 
+
 			require_once(sprintf("%s/post-types/Catalogs.php", dirname(__FILE__)));
-			$Catalog = new Catalogs();
+			$Catalogs = new Catalogs(); 
+			//require_once(sprintf("%s/post-types/Catalogs.php", dirname(__FILE__)));
+			//$Catalog = new Catalogs();
 
 		}//end public constuctor
-		public function admin_init()
-			{
-				//setup the settings for this plugin
-				$this->init_settings();
-				//add more init tasks
-			}
-			public function init_settings()
-			{
-				register_setting('pdf_organizer-group', 'setting_a');
-				register_setting('pdf_organizer-group', 'setting_b');
-
-			}
-			public function add_menu()
-			{
-				add_options_page('PDF Organizer Settings', 'PDF Organizer', 'manage_options', 'pdf_organizer', array(&$this, 'plugin_settings_page'));
-
-			}
-			public function plugin_settings_page()
-			{
-				if(!current_user_can( 'manage_options' ))
-				{
-					wp_die(__('You do not have current permissions'));
-				}
-				include(sprintf("%s/templates/settings.php", dirname(__FILE__)));
-
-			}
+		
 		/**Activate the Plugin **/
 		public static function activate()
 		{
@@ -78,7 +56,8 @@ if(!class_exists('PDF_Organizer'))
 			//Do Nothing
 		}//End Deactivation
 		
-		if(class_exists('PDF_Organizer'))
+	}	
+	if(class_exists('PDF_Organizer'))
 		{
 			register_activation_hook( __FILE__, array('PDF_Organizer', 'activate'));
 			register_deactivation_hook( __FILE__, array('PDF_Organizer', 'deactivate'));
@@ -97,25 +76,5 @@ if(!class_exists('PDF_Organizer'))
 
 			}
 		}
-	}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

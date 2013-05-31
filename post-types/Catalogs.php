@@ -14,18 +14,23 @@ if(!class_exists('Catalogs'))
 			'meta_b',
 			'meta_c',
 		);	
-		public function __contruct()
+		public function __construct()
 		{
 			add_action('init', array(&$this, 'init'));
 			add_action('admin_init', array(&$this, 'admin_init'));
-
+			
+		}
+		public function init()
+		{
+			$this->create_post_type();
+			add_action('save_post', array(&$this, 'save_post'));
 		}
 		public function create_post_type()
 		{
 			register_post_type(self::POST_TYPE,
 				array(
 					'labels' => array(
-						'name' => __(sprintf('%ss', ucwords(str_replace("_", " ", self::POST_TYPE)))),
+						'name' => __(sprintf('%s', ucwords(str_replace("_", " ", self::POST_TYPE)))),
 						'singular_name' => __(ucwords(str_replace("_", " ", self::POST_TYPE)))
 						),
 					'public'=> true,
@@ -33,7 +38,7 @@ if(!class_exists('Catalogs'))
 					'description' => __("This post type is for catalogs"),
 					'supports' => 'title', 'editor', 'thumbnail',
 
-				),
+				)
 			);
 		}
 		public function save_post($post_id)
@@ -55,6 +60,7 @@ if(!class_exists('Catalogs'))
 			} else {
 
 				return;
+			}
 		} // End save post function
 
 		public function admin_init()
@@ -75,7 +81,7 @@ if(!class_exists('Catalogs'))
 		public function add_inner_meta_boxes($post)
 		{
 			include(sprintf("%s/../templates/%s_metabox.php", dirname(__FILE__), self::POST_TYPE));
-			
+
 		}
 	}
 }
