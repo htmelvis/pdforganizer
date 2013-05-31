@@ -92,6 +92,7 @@ if(!class_exists('PDF_Organizer'))
 				}
 				$plugin = plugin_basename(__FILE__);
 				add_filter("plugin_action_links_$plugin", 'plugin_settings_link');
+				
 			}
 		}
 	}	
