@@ -37,7 +37,11 @@ if(!class_exists('PDF_Organizer'))
 			//register actions
 			add_action('admin_init', array(&$this, 'admin_init'));
 			add_action('admin_menu', array(&$this, 'add_menu'));
-			public function admin_init()
+			require_once(sprintf("%s/post-types/Catalogs.php", dirname(__FILE__)));
+			$Catalog = new Catalogs();
+
+		}//end public constuctor
+		public function admin_init()
 			{
 				//setup the settings for this plugin
 				$this->init_settings();
@@ -63,8 +67,6 @@ if(!class_exists('PDF_Organizer'))
 				include(sprintf("%s/templates/settings.php", dirname(__FILE__)));
 
 			}
-		}//end public constuctor
-
 		/**Activate the Plugin **/
 		public static function activate()
 		{
@@ -92,7 +94,7 @@ if(!class_exists('PDF_Organizer'))
 				}
 				$plugin = plugin_basename(__FILE__);
 				add_filter("plugin_action_links_$plugin", 'plugin_settings_link');
-				
+
 			}
 		}
 	}	
