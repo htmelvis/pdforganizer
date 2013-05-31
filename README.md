@@ -1,4 +1,5 @@
 pdforganizer
 ============
 
-wordpress pdf plugin
+wordpress pdf plugin by Edward Wieczorek 
+
