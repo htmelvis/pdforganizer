@@ -48,7 +48,7 @@ if(!class_exists('PDF_Organizer'))
 		/**Activate the Plugin **/
 		public static function activate()
 		{
-
+			
 		}//End Activation
 		/**Deactivation of Plugin**/
 		public static function deactivate()
