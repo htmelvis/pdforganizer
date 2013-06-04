@@ -5,11 +5,8 @@ jQuery(document).ready(function($) {
  		e.preventDefault();
 		console.log(typeof(custom_uploader));
  		if(custom_uploader){
- 			console.log("its true");
  			custom_uploader.open();
  			return;
- 		} else {
- 			console.log("its false");
  		}
  		custom_uploader = wp.media.frames.file_frame = wp.media({
  			title: 'Choose PDF',
@@ -23,6 +20,30 @@ jQuery(document).ready(function($) {
  		custom_uploader.on('select', function(){
  			attachment = custom_uploader.state().get('selection').first().toJSON();
  			$('#upload_pdf').val(attachment.url);
+ 		});
+
+ 		custom_uploader.open();
+ 	});
+ 	$("#upload_image_button_tax").click(function(e){
+ 		e.preventDefault();
+		//console.log(typeof(custom_uploader));
+ 		if(custom_uploader){
+ 			custom_uploader.open();
+ 			return;
+ 		}
+ 		custom_uploader = wp.media.frames.file_frame = wp.media({
+ 			title: 'Choose Category Image',
+ 			button: {
+ 				text: 'Choose Image'
+ 			},
+ 			multiple: false
+ 			//library: { type: 'pdf'}
+ 		}); // end of custom uploader script
+
+ 		custom_uploader.on('select', function(){
+ 			attachment = custom_uploader.state().get('selection').first().toJSON();
+ 			console.log($('#term_meta[term_meta]'));
+ 			$('.term_tax_input').val(attachment.url);
  		});
 
  		custom_uploader.open();

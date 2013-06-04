@@ -12,7 +12,7 @@ get_header(); ?>
     <?php while ( $loop->have_posts() ) : $loop->the_post();?>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <header class="entry-header">
- 
+                <p>All the single ladies</p>
                 <!-- Display featured image in right-aligned floating div -->
                 <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>">
                 <div style="float: right; margin: 10px">

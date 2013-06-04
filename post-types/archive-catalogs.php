@@ -1,24 +1,24 @@
 <?php
- /*Template Name: Catalog Categories Template
+ /*Template Name: Archive Catalogs
  */
  
 get_header(); ?>
 <div id="primary">
     <div id="content" role="main">
-        <?php $terms = get_terms('Catalog Info');
+        <?php 
+            $taxonomy = 'catalog-categories';
+            $tax_terms = get_terms($taxonomy, array(
+                'parent' => 0
+            ));
 
-        $count = count($terms);
-        if($count > 0){
             echo "<ul>";
-            foreach($terms as $term){
-                echo "<li>" . $term->name . "</li>";
+            foreach($tax_terms as $tax_term){
+                echo '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) .
+                '" title="' . sprintf( __('View Posts In %s'), $tax_term->name) . '" ' . '>' . $tax_term->name . '</a></li>'; 
             }
-            echo "</ul>";
-        }
-
-
+            echo "</ul>"
         ?>
     </div>
 </div>
-
+<?php wp_reset_query(); ?>
 <?php get_footer(); ?>

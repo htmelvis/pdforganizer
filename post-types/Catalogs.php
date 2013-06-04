@@ -161,7 +161,7 @@ if(!class_exists('Catalogs'))
 ?>
 	<div class="form-field">
 		<label for="term_meta[custom_term_meta]">Add Category Image</label>
-		<input type="submit" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
+		<input type="submit" style="width: 180px; padding: 5px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd;" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
 		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" class="term_tax_input" value="">
 		<p class="description">Add an Image to your Category for Show on the Archive Pages</p>
 	</div>
@@ -177,7 +177,7 @@ if(!class_exists('Catalogs'))
 	<tr class="form-field">
 	<th scope="row" valign="top"><label for="term_meta[custom_term_meta]">Upload Category Image</label></th>
 		<td>
-			<input type="submit" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
+			<input type="submit" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" style="width: 180px; padding: 5px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd;"/>
 			<input type="text" class="term_tax_input" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="<?php echo esc_attr( $term_meta['custom_term_meta'] ) ? esc_attr( $term_meta['custom_term_meta'] ) : ''; ?>">
 			<p class="description">Image Upload Description</p>
 		</td>
