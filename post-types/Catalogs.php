@@ -161,7 +161,8 @@ if(!class_exists('Catalogs'))
 ?>
 	<div class="form-field">
 		<label for="term_meta[custom_term_meta]">Add Category Image</label>
-		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="">
+		<input type="submit" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
+		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" class="term_tax_input" value="">
 		<p class="description">Add an Image to your Category for Show on the Archive Pages</p>
 	</div>
 
@@ -169,5 +170,37 @@ if(!class_exists('Catalogs'))
 	}
 	add_action('catalog-categories_add_form_fields', 'taxonomy_add_new_meta_field');
 
+	function taxonomy_edit_meta_field($term){
+		$t_id = $term->term_id;
+		$term_meta = get_option("taxonomy_$t_id");
+?>
+	<tr class="form-field">
+	<th scope="row" valign="top"><label for="term_meta[custom_term_meta]">Upload Category Image</label></th>
+		<td>
+			<input type="submit" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
+			<input type="text" class="term_tax_input" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="<?php echo esc_attr( $term_meta['custom_term_meta'] ) ? esc_attr( $term_meta['custom_term_meta'] ) : ''; ?>">
+			<p class="description">Image Upload Description</p>
+		</td>
+	</tr>
+<?php
+	
+	}
+	add_action( 'catalog-categories_edit_form_fields', 'taxonomy_edit_meta_field', 10, 2 );	
 
+	function save_taxonomy_custom_meta( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+		foreach ( $cat_keys as $key ) {
+			if ( isset ( $_POST['term_meta'][$key] ) ) {
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+			// Save the option array.
+			update_option( "taxonomy_$t_id", $term_meta );
+		}
+	}  
+	add_action( 'edited_catalog-categories', 'save_taxonomy_custom_meta', 10, 2 );  
+	add_action( 'create_catalog-categories', 'save_taxonomy_custom_meta', 10, 2 );
 }
