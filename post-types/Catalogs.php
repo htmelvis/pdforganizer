@@ -156,4 +156,18 @@ if(!class_exists('Catalogs'))
 		return $template_path;
 
 	}
+
+	function taxonomy_add_new_meta_field(){
+?>
+	<div class="form-field">
+		<label for="term_meta[custom_term_meta]">Add Category Image</label>
+		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="">
+		<p class="description">Add an Image to your Category for Show on the Archive Pages</p>
+	</div>
+
+<?php
+	}
+	add_action('catalog-categories_add_form_fields', 'taxonomy_add_new_meta_field');
+
+
 }
