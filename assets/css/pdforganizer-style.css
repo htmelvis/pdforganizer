@@ -1,0 +1,73 @@
+/***
+pdf organizer CSS FILE!
+
+**/
+.catalogs{
+	float: left;
+	width: 25%;
+	border: 2px solid #ccc;
+	padding: 1%;
+	margin-right: 2%;
+	box-shadow: 3px 3px 8px #222;
+}
+.catalogs:hover{
+	box-shadow: 0 0 0 #000;
+}
+.catalogs .entry-content{
+	clear: both;
+}
+.catalogs .entry-header a{
+	text-decoration: none;
+}
+.catalogs .entry-header h3{
+	clear: both;
+	font-size: 1.5em;
+	text-align: center;
+}
+.catalogs .entry-content h4{
+	margin-bottom: 0;
+}
+.catalogs p{
+	margin: 0;
+}
+.cat-section{
+	max-width: 300px;
+	float: left;
+	width: 22%;
+	min-height: 300px;
+	margin-right: 1%;
+}
+.cat-section a{
+	text-decoration: none;
+}
+.cat-section img, .cat-thumb img{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+	padding: 5px;
+	background: #ccc;
+}
+.cat-section h3{
+	font-size: 1.5em;
+	text-align: center;
+	margin: 10px 0;
+}
+.archive-cats{
+	float: left;
+	width: 25%;
+
+}
+.archive-cats h3{
+	font-size: 1.5em;
+	text-align: center;
+	margin: 10px 0;
+}
+.archive-cats a{
+	text-decoration: none;
+
+}
+.archive-cats img{
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}

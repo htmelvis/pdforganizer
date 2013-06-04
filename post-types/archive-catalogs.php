@@ -13,8 +13,17 @@ get_header(); ?>
 
             echo "<ul>";
             foreach($tax_terms as $tax_term){
-                echo '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) .
-                '" title="' . sprintf( __('View Posts In %s'), $tax_term->name) . '" ' . '>' . $tax_term->name . '</a></li>'; 
+                $t_ID = $tax_term->term_id;
+                $term_data = get_option("taxonomy_$t_ID");
+
+                echo '<li class="archive-cats"><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) .
+                '" title="' . sprintf( __('View Posts In %s'), $tax_term->name) . '" ' . '>';
+                if(isset($term_data[custom_term_meta])){
+                      echo '<img src="'. $term_data[custom_term_meta].'"/>';
+                } else {
+                    echo '<img src="'. plugin_dir_url(__FILE__) .'../assets/img/default.jpg" />';
+                } 
+                echo '<h3>' . $tax_term->name . '</h3></a></li>'; 
             }
             echo "</ul>"
         ?>

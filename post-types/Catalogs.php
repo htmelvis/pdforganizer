@@ -206,6 +206,8 @@ if(!class_exists('Catalogs'))
 
 	function load_tax_page_scripts(){
 		//if(is_tax()){
+			wp_register_style('tax-css', plugin_dir_url(__FILE__) . '../assets/css/pdforganizer-style.css');
+			wp_enqueue_style('tax-css');
 			wp_register_script('tax-scripts', plugin_dir_url(__FILE__) . '../assets/js/jquery.gdocsviewer.min.js', array('jquery'));
 			wp_enqueue_script('tax-scripts');
 			wp_register_script('tax-jquery', plugin_dir_url(__FILE__) . '../assets/js/script.js', array('jquery'));

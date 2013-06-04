@@ -31,12 +31,14 @@ get_header(); ?>
                     $t_ID = $tax_term->term_id;
                     $term_data = get_option("taxonomy_$t_ID");
 
-                    echo '<li>';
+                    echo '<li class="cat-section">';
                     echo '<a href="'. esc_attr(get_term_link($tax_term, $taxonomy)) .'" title="'.$tax_term->name. '">';
                     if(isset($term_data[custom_term_meta])){
                       echo '<img src="'. $term_data[custom_term_meta].'"/>';
-                    } // else create default catalog pic 
-                    echo $tax_term->name;
+                    } else {
+                        echo '<img src="'. plugin_dir_url(__FILE__) .'../assets/img/default.jpg" />';
+                    } 
+                    echo "<h3>" . $tax_term->name . "</h3>";
                     echo '</a></li>'; 
                 }
                 echo "</ul>";
@@ -53,19 +55,24 @@ get_header(); ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
                     <header class="entry-header">
                         <!-- Display featured image in right-aligned floating div -->
-                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>" class="embed thickbox">
-                        <div style="float: right; margin: 10px">
+                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>" class="embed">
+                        <div class="cat-thumb">
                             <?php the_post_thumbnail( array( 250, 300 ) ); ?>
                         </div>
          
                         <!-- Display Title and Author Name -->
-                        <strong>Title: </strong>Fuck: <?php the_title(); ?><br />
+                        <h3><?php the_title(); ?></h3>
                         </a>
          
                     </header>
          
                     <!-- Display movie review contents -->
-                    <div class="entry-content"> <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?></div>
+                    <div class="entry-content">
+                    <h4>Catalog Description: </h4>
+                    <p>
+                     <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?>
+                    </p>
+                 </div>
                 </article>
          
      <?php endwhile;
