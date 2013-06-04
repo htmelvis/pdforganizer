@@ -14,8 +14,8 @@ get_header(); ?>
             //$slug = basename($currTax);
             $slug = $currTax->slug;
             
-            if($currTax->parent == 0){
 
+            if($currTax->parent == 0){
 
                 $tax_term_curr = get_term_by('slug', $slug, $taxonomy );
 
@@ -23,10 +23,21 @@ get_header(); ?>
                     'parent' =>  $tax_term_curr->term_id,
                     'hide_empty' => false
                 ));
-
+                
                 echo "<ul>";
+
                 foreach($tax_terms as $tax_term){
-                    echo '<li><a href="'. esc_attr(get_term_link($tax_term, $taxonomy)) .'" title="' . sprintf( __('View Catalogs In %s'), $tax_term->name) . '" ' . '>' . $tax_term->name . '</a></li>'; 
+            
+                    $t_ID = $tax_term->term_id;
+                    $term_data = get_option("taxonomy_$t_ID");
+
+                    echo '<li>';
+                    echo '<a href="'. esc_attr(get_term_link($tax_term, $taxonomy)) .'" title="'.$tax_term->name. '">';
+                    if(isset($term_data[custom_term_meta])){
+                      echo '<img src="'. $term_data[custom_term_meta].'"/>';
+                    } // else create default catalog pic 
+                    echo $tax_term->name;
+                    echo '</a></li>'; 
                 }
                 echo "</ul>";
             } else { 
@@ -42,7 +53,7 @@ get_header(); ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
                     <header class="entry-header">
                         <!-- Display featured image in right-aligned floating div -->
-                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>">
+                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>" class="embed thickbox">
                         <div style="float: right; margin: 10px">
                             <?php the_post_thumbnail( array( 250, 300 ) ); ?>
                         </div>

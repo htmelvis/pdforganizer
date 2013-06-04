@@ -122,7 +122,7 @@ if(!class_exists('Catalogs'))
 		//if (isset($_GET['post_type']) && $_GET['post_type'] == 'catalogs') {
 			wp_enqueue_media();
 			//Get the plugin directory with plugin name
-			wp_register_script('catalog-upload', plugin_dir_url(__FILE__) . '../assets/js/script.js', array('jquery'));
+			wp_register_script('catalog-upload', plugin_dir_url(__FILE__) . '../assets/js/admin-script.js', array('jquery', 'tax-scripts'));
 			wp_enqueue_script('catalog-upload');
 		//}
 	}		
@@ -203,4 +203,14 @@ if(!class_exists('Catalogs'))
 	}  
 	add_action( 'edited_catalog-categories', 'save_taxonomy_custom_meta', 10, 2 );  
 	add_action( 'create_catalog-categories', 'save_taxonomy_custom_meta', 10, 2 );
+
+	function load_tax_page_scripts(){
+		//if(is_tax()){
+			wp_register_script('tax-scripts', plugin_dir_url(__FILE__) . '../assets/js/jquery.gdocsviewer.min.js', array('jquery'));
+			wp_enqueue_script('tax-scripts');
+			wp_register_script('tax-jquery', plugin_dir_url(__FILE__) . '../assets/js/script.js', array('jquery'));
+			wp_enqueue_script('tax-jquery');
+		//}	
+	}
+	add_action('init', 'load_tax_page_scripts');
 }
