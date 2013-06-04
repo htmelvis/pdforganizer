@@ -30,7 +30,34 @@ get_header(); ?>
                 }
                 echo "</ul>";
             } else { 
-                echo "Holy Shit"; 
+                //Need WP Loop to output the Catalogs from current Category
+           
+                $mypost = array( 
+                    'post_type' => 'catalogs',
+                    'catalog-categories' => $slug );
+                $loop = new WP_Query( $mypost );
+            
+                 while ( $loop->have_posts() ) : $loop->the_post();
+            ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
+                    <header class="entry-header">
+                        <!-- Display featured image in right-aligned floating div -->
+                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>">
+                        <div style="float: right; margin: 10px">
+                            <?php the_post_thumbnail( array( 250, 300 ) ); ?>
+                        </div>
+         
+                        <!-- Display Title and Author Name -->
+                        <strong>Title: </strong>Fuck: <?php the_title(); ?><br />
+                        </a>
+         
+                    </header>
+         
+                    <!-- Display movie review contents -->
+                    <div class="entry-content"> <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?></div>
+                </article>
+         
+     <?php endwhile;
             }
         ?>
     </div>
