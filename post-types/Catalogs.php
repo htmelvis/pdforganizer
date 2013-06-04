@@ -17,6 +17,7 @@ if(!class_exists('Catalogs'))
 		{
 			add_action('init', array(&$this, 'init'));
 			add_action('admin_init', array(&$this, 'admin_init'));
+
 			
 		}
 		public function init()
@@ -215,4 +216,62 @@ if(!class_exists('Catalogs'))
 		//}	
 	}
 	add_action('init', 'load_tax_page_scripts');
+
+	class filterWidget extends WP_Widget{
+		function filterWidget(){
+			parent::WP_Widget(false, $name = "Catalog Filters");
+		}
+		function widget($args, $instance){
+			//enqueue scripts needed
+			extract($args);
+			$title = apply_filters( 'widget_title', $instance['title'] );
+	
+			echo $before_widget;
+			
+		?>
+		<div class="my_textbox">
+			<?php 
+				 if($title){
+					echo $before_title . $title . $after_title;
+				}	
+	            $taxonomy = 'catalog-categories';
+	            $tax_terms = get_terms($taxonomy, array(
+	                'parent' => 0
+	            ));
+
+	            echo "<ul>";
+	            foreach($tax_terms as $tax_term){
+	                $t_ID = $tax_term->term_id;
+	                $term_data = get_option("taxonomy_$t_ID");
+
+	                echo '<li><a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) .
+	                '" title="' . sprintf( __('View Posts In %s'), $tax_term->name) . '" ' . '>';
+	      
+	                echo '<h5>' . $tax_term->name . '</h5></a></li>'; 
+	            }
+	            echo "</ul>"
+        	?>
+
+		</div>
+	<?php
+		echo $after_widget;
+				//over methods
+	}//end of function
+		function update($new_instance, $old_instance){
+			return $new_instance;
+		}
+		function form($instance){
+			$title = esc_attr($instance['title']);
+	?>
+		<p>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+		</p>
+	<?php
+		}
+	}
+	add_action('widgets_init', 'filterWidgetInit');
+	function filterWidgetInit(){
+		register_widget( 'filterWidget' );
+
+	}
 }
