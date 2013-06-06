@@ -95,7 +95,6 @@ if(!class_exists('Catalogs'))
 		public function admin_init()
 		{
 			add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
-
 		}//end admin init
 
 		public function add_meta_boxes()
@@ -162,7 +161,7 @@ if(!class_exists('Catalogs'))
 ?>
 	<div class="form-field">
 		<label for="term_meta[custom_term_meta]">Add Category Image</label>
-		<input type="submit" style="width: 180px; padding: 5px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd;" id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
+		<input type="submit"  id="upload_image_button_tax" value="Upload image" name="upload_image_button_tax" />
 		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" class="term_tax_input" value="">
 		<p class="description">Add an Image to your Category for Show on the Archive Pages</p>
 	</div>
@@ -196,6 +195,13 @@ if(!class_exists('Catalogs'))
 		foreach ( $cat_keys as $key ) {
 			if ( isset ( $_POST['term_meta'][$key] ) ) {
 				$term_meta[$key] = $_POST['term_meta'][$key];
+
+				$image = wp_get_image_editor($term_meta['custom_term_meta']);
+                 if($image){
+                    $image->resize(300, 250, true);
+                    $image->save();
+                 }
+					
 			}
 		}
 			// Save the option array.
@@ -274,4 +280,5 @@ if(!class_exists('Catalogs'))
 		register_widget( 'filterWidget' );
 
 	}
+	add_image_size('catalog-cover', 200, 259, true);
 }

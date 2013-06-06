@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 
  	$("#upload_image_button").click(function(e){
  		e.preventDefault();
-		console.log(typeof(custom_uploader));
+		//console.log(typeof(custom_uploader));
  		if(custom_uploader){
  			custom_uploader.open();
  			return;

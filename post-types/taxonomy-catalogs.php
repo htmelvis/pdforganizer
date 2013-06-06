@@ -34,7 +34,7 @@ get_header(); ?>
                     echo '<li class="cat-section">';
                     echo '<a href="'. esc_attr(get_term_link($tax_term, $taxonomy)) .'" title="'.$tax_term->name. '">';
                     if(isset($term_data[custom_term_meta])){
-                      echo '<img src="'. $term_data[custom_term_meta].'"/>';
+                      echo '<img src="'. $term_data[custom_term_meta].'" width="200" height="259" />';
                     } else {
                         echo '<img src="'. plugin_dir_url(__FILE__) .'../assets/img/default.jpg" />';
                     } 
@@ -57,7 +57,7 @@ get_header(); ?>
                         <!-- Display featured image in right-aligned floating div -->
                         <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>" class="embed">
                         <div class="cat-thumb">
-                            <?php the_post_thumbnail( array( 250, 300 ) ); ?>
+                            <?php the_post_thumbnail('catalog-cover'); ?>
                         </div>
          
                         <!-- Display Title and Author Name -->

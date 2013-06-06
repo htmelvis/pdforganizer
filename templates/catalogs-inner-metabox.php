@@ -17,7 +17,9 @@
 			<label for="meta_desc">Description</label>
 		</th>
 		<td>
-			<textarea type="text" id="meta_desc" name="meta_desc"><?php  echo @$description;  ?></textarea>
+			<textarea type="text" id="meta_desc" name="meta_desc" maxlength="105"><?php  echo @$description;  ?></textarea>
+			<p><em>Must be under 105 characters(includes spaces)</em></p>
+
 		</td>
 		
 	</tr>

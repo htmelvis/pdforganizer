@@ -15,7 +15,7 @@ get_header(); ?>
                 <!-- Display featured image in right-aligned floating div -->
                 <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>">
                 <div>
-                    <?php the_post_thumbnail( array( 250, 300 ) ); ?>
+                    <?php the_post_thumbnail('thumbnail'); ?>
                 </div>
  
                 <!-- Display Title and Author Name -->

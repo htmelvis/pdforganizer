@@ -9,6 +9,10 @@ pdf organizer CSS FILE!
 	padding: 1%;
 	margin-right: 2%;
 	box-shadow: 3px 3px 8px #222;
+	margin-bottom: 30px;
+	max-height: 450px;
+	height: 450px;
+	overflow: hidden;
 }
 .catalogs:hover{
 	box-shadow: 0 0 0 #000;
@@ -70,4 +74,7 @@ pdf organizer CSS FILE!
 	display: block;
 	margin: 0 auto;
 	max-width: 100%;
+}
+#upload_image_button_tax{
+	width: 180px; padding: 5px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd;
 }
