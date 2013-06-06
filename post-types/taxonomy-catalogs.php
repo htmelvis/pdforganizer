@@ -55,7 +55,7 @@ get_header(); ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class();?>>
                     <header class="entry-header">
                         <!-- Display featured image in right-aligned floating div -->
-                        <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>" class="embed">
+                        <a href="<?php the_permalink(); ?>" class="embed">
                         <div class="cat-thumb">
                             <?php the_post_thumbnail('catalog-cover'); ?>
                         </div>
