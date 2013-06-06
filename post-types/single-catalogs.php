@@ -4,7 +4,7 @@
  
 get_header(); ?>
 <div id="primary">
-    <div id="content" role="main">
+    <div id="content" class="main-content-single-catalog" role="main">
     <?php
      global $post;
     ?>
