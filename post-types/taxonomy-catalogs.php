@@ -4,7 +4,7 @@
  
 get_header(); ?>
 <div id="primary">
-    <div id="content" role="main">
+    <div id="content" class="full-catalog-categories" role="main">
 
         <?php 
             
@@ -24,7 +24,7 @@ get_header(); ?>
                     'hide_empty' => false
                 ));
                 
-                echo "<ul>";
+                echo "<ul class=\"catalog-listings\">";
 
                 foreach($tax_terms as $tax_term){
             
@@ -59,7 +59,15 @@ get_header(); ?>
                         <!-- Display featured image in right-aligned floating div -->
                         <a href="<?php the_permalink(); ?>" class="embed">
                         <div class="cat-thumb">
-                            <?php the_post_thumbnail('catalog-cover'); ?>
+                            <?php 
+
+                            if(has_post_thumbnail()){
+                                the_post_thumbnail('catalog-cover'); 
+                            } else  {
+                                echo '<img src="'. plugin_dir_url(__FILE__) .'../assets/img/default.jpg" />'; 
+                            }
+
+                            ?>
                         </div>
          
                         <!-- Display Title and Author Name -->
@@ -69,7 +77,7 @@ get_header(); ?>
                     </header>
          
                     <!-- Display movie review contents -->
-                    <div class="entry-content">
+                    <div class="entry-desc">
                     <h4>Catalog Description: </h4>
                     <p>
                      <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?>
@@ -81,9 +89,9 @@ get_header(); ?>
             }
         ?>
         <div class="navigation">
-  <div class="alignleft"><?php previous_posts_link('&laquo; Previous') ?></div>
-  <div class="alignright"><?php next_posts_link('More &raquo;') ?></div>
-    </div>
+            <div class="alignleft"><?php previous_posts_link('&laquo; Previous') ?></div>
+            <div class="alignright"><?php next_posts_link('More &raquo;') ?></div>
+        </div>
 </div>
 <?php wp_reset_query(); ?>
 <?php get_footer(); ?>

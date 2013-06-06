@@ -4,7 +4,7 @@
  
 get_header(); ?>
 <div id="primary">
-    <div id="content" role="main">
+    <div id="content" class="archive-catalogs-section" role="main">
         <?php 
             $taxonomy = 'catalog-categories';
             $tax_terms = get_terms($taxonomy, array(
@@ -12,7 +12,7 @@ get_header(); ?>
                 'hide_empty'=> false
             ));
 
-            echo "<ul>";
+            echo "<ul class=\"catalog-listings\">";
             foreach($tax_terms as $tax_term){
                 $t_ID = $tax_term->term_id;
                 $term_data = get_option("taxonomy_$t_ID");

@@ -78,3 +78,8 @@ pdf organizer CSS FILE!
 #upload_image_button_tax{
 	width: 180px; padding: 5px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ddd;
 }
+.navigation{
+	clear: both;
+	width: 100%;
+	
+}

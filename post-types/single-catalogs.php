@@ -16,9 +16,10 @@ get_header(); ?>
                  <div>
                     <?php //echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>
                     <?php the_post_thumbnail('thumbnail'); ?>
+                    <div class="side-catalog-info">
                     <h3><?php the_title(); ?></h3>
                     <div class="cat-desc"> <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?>
-
+                    </div>
                 </div>
  
                 <!-- Display Title and Author Name -->
