@@ -47,7 +47,9 @@ get_header(); ?>
            
                 $mypost = array( 
                     'post_type' => 'catalogs',
-                    'catalog-categories' => $slug );
+                    'catalog-categories' => $slug, 
+                    'posts_per_page'=>9,
+                    'paged'=> $paged );
                 $loop = new WP_Query( $mypost );
             
                  while ( $loop->have_posts() ) : $loop->the_post();
@@ -74,10 +76,13 @@ get_header(); ?>
                     </p>
                  </div>
                 </article>
-         
+                
      <?php endwhile;
             }
         ?>
+        <div class="navigation">
+  <div class="alignleft"><?php previous_posts_link('&laquo; Previous') ?></div>
+  <div class="alignright"><?php next_posts_link('More &raquo;') ?></div>
     </div>
 </div>
 <?php wp_reset_query(); ?>

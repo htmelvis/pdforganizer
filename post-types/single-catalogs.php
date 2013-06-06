@@ -13,22 +13,34 @@ get_header(); ?>
     ?>
         <article id="post-<?php the_ID(); ?>">
             <header class="entry-header">
-                <p>Woops</p>
-                <!-- Display featured image in right-aligned floating div -->
-                <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true));  ?>" class="embedded">
-                <div>
+                 <div>
                     <?php //echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true)); ?>
                     <?php the_post_thumbnail('thumbnail'); ?>
+                    <h3><?php the_title(); ?></h3>
+                    <div class="cat-desc"> <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?>
+
                 </div>
  
                 <!-- Display Title and Author Name -->
-                <h3><?php the_title(); ?></h3>
+                
+                <!-- Display featured image in right-aligned floating div -->
+                <!-- <a href="" class="embedded"> -->
+                    
+               
                 </a>
  
             </header>
  
             <!-- Display movie review contents -->
-            <div class="entry-content"> <?php echo esc_html( get_post_meta( get_the_ID(), 'meta_desc', true ) ); ?></div>
+
+                <object data="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true));  ?>" type="application/pdf" width="100%" height="700">
+                        <p>It appears you dont have a PDF plugin for this browser. Click here to Download the file directly: 
+                            <a href="<?php echo esc_html(get_post_meta(get_the_ID(), 'upload_pdf', true));  ?>" class="embedded">
+                                <?php the_title(); ?>
+                            </a>
+                    </object>
+
+            </div>
         </article>
  
     <?php endwhile; 
