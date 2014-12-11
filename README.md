@@ -1,10 +1,8 @@
 pdforganizer
 ============
 
-wordpress pdf plugin by Edward Wieczorek 
+wordpress pdf plugin
 ============
 
-Crop and Resize the thumb views on the template pages
-
-Create Final Single View With PDF Viewer
+Wordpress solution for uploading and saving pdf's as a Custom Post Type 
 
